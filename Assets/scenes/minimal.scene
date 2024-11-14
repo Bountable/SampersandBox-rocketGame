@@ -316,7 +316,7 @@
       "__guid": "0c43d0ad-6286-49c2-9b28-d662821c86b6",
       "Flags": 0,
       "Name": "Cube",
-      "Position": "-88.24343,-98.82896,81.57758",
+      "Position": "-88.24343,-98.82896,1301.789",
       "Scale": "1,0.8,2.1",
       "Enabled": true,
       "Components": [
@@ -370,7 +370,7 @@
           "__guid": "dc8b3645-0632-4d71-8152-dfc916b5f6ac",
           "GravityForce": 500,
           "MaxSpeed": 1000,
-          "RotationalSpeed": 100,
+          "RotationalSpeed": 300,
           "ThrustForce": 2000
         }
       ]

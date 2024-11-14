@@ -1,0 +1,33 @@
+{
+  "RootObject": {
+    "__guid": "3f7df4b4-ea9a-47ad-913f-c4b10946f6da",
+    "Flags": 0,
+    "Name": "Bullet",
+    "Position": "-821.0894,-34.46239,-115.0648",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "Sandbox.ModelRenderer",
+        "__guid": "37ab54d0-6b23-4c49-b195-4ab76ec9feda",
+        "BodyGroups": 18446744073709551615,
+        "CreateAttachments": false,
+        "Model": "models/dev/sphere.vmdl",
+        "RenderOptions": {
+          "GameLayer": true,
+          "OverlayLayer": false,
+          "BloomLayer": false,
+          "AfterUILayer": false
+        },
+        "RenderType": "On",
+        "Tint": "0.95,1,0,1"
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "DontBreakAsTemplate": false,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
+}
