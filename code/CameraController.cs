@@ -4,7 +4,7 @@ public sealed class CameraController : Component
 {
 
 	[Property] private GameObject Target { get; set;}
-	[Property] public Vector3 Offset = new Vector3(-360, 0, 0); // Offset from the target
+	[Property] public Vector3 Offset = new Vector3(2000, 2000, 2000); // Offset from the target
 
 	private CameraComponent camera = null;
 
@@ -17,7 +17,7 @@ public sealed class CameraController : Component
 	protected override void OnUpdate()
 	{
 		
-		camera.WorldPosition = Target.WorldPosition + new Vector3(-2000, 0, 0);
+		camera.WorldPosition = Target.WorldPosition + Offset;
 
 	}
 }

@@ -15,14 +15,17 @@ public sealed class CubeController : Component
     public Vector3 Velocity; // Custom velocity vector
 
     public float RollRotation;    // Track current yaw rotation
-    
-    
-  
+
+
+
     protected override void OnStart()
     {
 	    Velocity = Vector3.Zero;
 	    var initialRotation = GameObject.WorldRotation.Angles();
 	    RollRotation = initialRotation.roll;
+	    
+	    var xRotation = Rotation.FromAxis(Vector3.Up, -90);
+	    GameObject.WorldRotation = xRotation * GameObject.WorldRotation;
     }
 
     protected override void OnUpdate()
