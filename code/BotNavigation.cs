@@ -3,7 +3,7 @@ using System.Reflection.Metadata;
 using Sandbox;
 
 
-//TODO Make the Lerp more Loose 
+
 public sealed class BotNavigation : Component
 {
 	
@@ -62,7 +62,21 @@ public sealed class BotNavigation : Component
 		//change positions of the bot
 		GameObject.WorldPosition += Velocity * Time.Delta;
 		
-		RotateTowardsPlayer();
+		
+		// If the Distance between the 2 is greater roll towards the player if not keep going straight
+		float deltax = Target.WorldPosition.x - GameObject.WorldPosition.x;
+		float deltay = Target.WorldPosition.y - GameObject.WorldPosition.y;
+		float deltaz = Target.WorldPosition.z - GameObject.WorldPosition.z;
+		
+		float distance = MathF.Sqrt(deltax * deltax + deltay * deltay + deltaz * deltaz);
+
+			
+		if ( distance >  MinimumDistance )
+		{
+			RotateTowardsPlayer();
+		}
+		
+		
 	}
 
 	private void RotateTowardsPlayer()
@@ -84,7 +98,7 @@ public sealed class BotNavigation : Component
 		// Apply only the roll rotation to the enemy
 		this.WorldRotation = Rotation.FromRoll(RollRotation);
 
-		Log.Info("ROLLING TO POINT TOWARDS PLAYER");
+		//Log.Info("ROLLING TO POINT TOWARDS PLAYER");
 	}
 
 	// Custom LerpAngle function to handle wrapping correctly
@@ -104,8 +118,9 @@ public sealed class BotNavigation : Component
 	//TESTING
 	private void PlayerShoot()
 	{
+		Log.Info("Enemy shooting");
 		// Define the bullet's speed
-		float bulletSpeed = 2000f; // Adjust the speed as needed
+		float bulletSpeed = 100; // Adjust the speed as needed
 	    
 
 
@@ -133,9 +148,16 @@ public sealed class BotNavigation : Component
 
 		// Apply forward velocity to the bullet
 		bulletRigidbody.Velocity = GameObject.WorldRotation.Up * bulletSpeed;
-
+		float currentVelocity = Velocity.Length;
 		var bulletController = bullet.AddComponent<BulletController>();
-		bulletController.Initialize(spawnPosition, GameObject.WorldRotation.Forward, 500, 1000);
+		
+		float bulletBaseSpeed = 2000
+			;
+		float bulletTotalSpeed = bulletBaseSpeed + currentVelocity;
+		bulletRigidbody.Velocity = GameObject.LocalRotation.Up * bulletTotalSpeed;
+
+
+		bulletController.Initialize(spawnPosition, GameObject.LocalRotation.Up, bulletTotalSpeed , 5000,currentVelocity );
 	    
 
 
